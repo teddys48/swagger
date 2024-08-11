@@ -8,33 +8,89 @@ window.onload = function () {
       info: {
         title: "KMPRO API",
       },
-      servers: [
-        {
-          url: "http://api.example.com/v1",
-          description:
-            "Optional server description, e.g. Main (production) server",
+      components: {
+        // schemas: ["./src/validation"],
+        securitySchemes: {
+          bearer: {
+            type: "http",
+            scheme: "bearer",
+            bearerFormat: "JWT",
+          },
         },
+      },
+      security: [
         {
-          url: "http://staging-api.example.com",
-          description:
-            "Optional server description, e.g. Internal staging server for testing",
+          bearer: [],
         },
       ],
+      servers: [
+        {
+          url: "https://ec2-3-25-193-79.ap-southeast-2.compute.amazonaws.com",
+          description:
+            "Production",
+        },
+        // {
+        //   url: "http://staging-api.example.com",
+        //   description:
+        //     "Optional server description, e.g. Internal staging server for testing",
+        // },
+      ],
       paths: {
-        "/user2": {
-          get: {
-            summary: "Returns a list of users.",
-            tags: ["auth"],
-            description: "Optional extended description in CommonMark or HTML.",
+        "/api/auth/login": {
+          post: {
+            summary: "Login",
+            tags: ["Auth"],
+            description: "Login",
+            requestBody: {
+              required: true,
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      username: {
+                        type: "string",
+                        default: "admin",
+                      },
+                      password: {
+                        type: "string",
+                        default: "admin",
+                      },
+                    },
+                    required: ["username", "password"],
+                  },
+                },
+              },
+            },
             responses: {
               200: {
-                description: "A JSON array of user names",
+                description: "Success",
                 content: {
                   "application/json": {
                     schema: {
-                      type: "array",
-                      items: {
-                        type: "string",
+                      type: "object",
+                      properties: {
+                        code: {
+                          type: "number",
+                          default: "00",
+                        },
+                        message: {
+                          type: "string",
+                          default: "success",
+                        },
+                        data: {
+                          type: "object",
+                          properties: {
+                            access_token: {
+                              type: "string",
+                              default: "kklaNSkalnskl",
+                            },
+                            refresh_token: {
+                              type: "string",
+                              default: "kklaNSkalnskl",
+                            },
+                          },
+                        },
                       },
                     },
                   },
@@ -43,7 +99,7 @@ window.onload = function () {
             },
           },
         },
-        "/users": {
+        "/api/auth/refresh-token": {
           get: {
             summary: "Returns a list of users.",
             tags: ["auth"],
