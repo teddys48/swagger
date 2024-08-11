@@ -8,6 +8,14 @@ window.onload = function () {
       info: {
         title: "KMPRO API",
       },
+      requestInterceptor: (x) => {
+        x.headers.Origin = "*";
+        return x;
+      },
+      responseInterceptor: (x) => {
+        x.headers.Origin = "*";
+        return x;
+      },
       components: {
         // schemas: ["./src/validation"],
         securitySchemes: {
@@ -26,8 +34,7 @@ window.onload = function () {
       servers: [
         {
           url: "https://ec2-3-25-193-79.ap-southeast-2.compute.amazonaws.com",
-          description:
-            "Production",
+          description: "Production",
         },
         // {
         //   url: "http://staging-api.example.com",
@@ -99,10 +106,10 @@ window.onload = function () {
             },
           },
         },
-        "/api/auth/refresh-token": {
+        "/": {
           get: {
             summary: "Returns a list of users.",
-            tags: ["auth"],
+            tags: ["Test"],
             description: "Optional extended description in CommonMark or HTML.",
             responses: {
               200: {
