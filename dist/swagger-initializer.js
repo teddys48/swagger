@@ -45,9 +45,7 @@ window.onload = function () {
       paths: {
         "/api/auth/login": {
           post: {
-            summary: "Login",
             tags: ["Auth"],
-            description: "Login",
             requestBody: {
               required: true,
               content: {
@@ -106,20 +104,38 @@ window.onload = function () {
             },
           },
         },
-        "/": {
+        "/api/auth/refresh-token": {
           get: {
-            summary: "Returns a list of users.",
-            tags: ["Test"],
-            description: "Optional extended description in CommonMark or HTML.",
+            tags: ["Auth"],
             responses: {
               200: {
-                description: "A JSON array of user names",
+                description: "Success",
                 content: {
                   "application/json": {
                     schema: {
-                      type: "array",
-                      items: {
-                        type: "string",
+                      type: "object",
+                      properties: {
+                        code: {
+                          type: "number",
+                          default: "00",
+                        },
+                        message: {
+                          type: "string",
+                          default: "success",
+                        },
+                        data: {
+                          type: "object",
+                          properties: {
+                            access_token: {
+                              type: "string",
+                              default: "kklaNSkalnskl",
+                            },
+                            refresh_token: {
+                              type: "string",
+                              default: "kklaNSkalnskl",
+                            },
+                          },
+                        },
                       },
                     },
                   },
