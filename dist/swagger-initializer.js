@@ -33,7 +33,7 @@ window.onload = function () {
       ],
       servers: [
         {
-          url: "https://ec2-3-25-193-79.ap-southeast-2.compute.amazonaws.com",
+          url: "https://ec2-13-210-200-151.ap-southeast-2.compute.amazonaws.com",
           description: "Production",
         },
         // {
