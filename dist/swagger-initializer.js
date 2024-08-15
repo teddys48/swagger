@@ -53,7 +53,7 @@ window.onload = function () {
                   schema: {
                     type: "object",
                     properties: {
-                      username: {
+                      email_or_nip: {
                         type: "string",
                         default: "admin",
                       },
