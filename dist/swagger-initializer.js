@@ -55,7 +55,7 @@ window.onload = function () {
                     properties: {
                       email_or_nip: {
                         type: "string",
-                        default: "admin",
+                        default: "admin@gmail.com",
                       },
                       password: {
                         type: "string",
