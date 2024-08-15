@@ -1,3 +1,9 @@
+var realPassword = "his";
+var password = prompt("Password", "");
+if (password != realPassword) {
+  window.location.reload();
+}
+
 window.onload = function () {
   //<editor-fold desc="Changeable Configuration Block">
 
